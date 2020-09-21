@@ -7,14 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>Android客户端安全测试系列 - x51的博客</title>
+  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=x51>
+  <meta name="keywords" content=>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
-  
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -22,6 +21,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
+
   <body>
     <div class="container">
       <header class="header">
@@ -37,6 +37,10 @@
         </li>
       
         <li class="menu-item">
+          <a href="/summary" class="menu-item-link">板绘</a>
+        </li>
+      
+        <li class="menu-item">
           <a href="/about" class="menu-item-link">关于</a>
         </li>
       
@@ -44,13 +48,15 @@
   </nav>
 </header>
 
+
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">Android客户端安全测试系列</h1>
   </div>
-   <div class="post-meta">
-    <span class="post-time">2020-01-26</span>
-  </div>
+
+  <!-- 文章目录 -->
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、签名安全"><span class="toc-text">一、签名安全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试方法"><span class="toc-text">测试方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试结果"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明"><span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、进程注入"><span class="toc-text">二、进程注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试方法-1"><span class="toc-text">测试方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试结果-1"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明-1"><span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、组件安全"><span class="toc-text">三、组件安全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试方法-2"><span class="toc-text">测试方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试结果-2"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明-2"><span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、客户端完整性校验"><span class="toc-text">四、客户端完整性校验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试方法-3"><span class="toc-text">测试方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试结果-3"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明-3"><span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、代码保护"><span class="toc-text">五、代码保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试方法-4"><span class="toc-text">测试方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试结果-4"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明-4"><span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、界面劫持保护"><span class="toc-text">六、界面劫持保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试方法-5"><span class="toc-text">测试方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试结果-5"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他说明-5"><span class="toc-text">其他说明</span></a></li></ol></li></ol>
+
   <div class="post-content">
     <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近整理Android测试工具，顺便做一个复习，部分测试环境需要现搭，可能会影响更新速度。  </p>
 <a id="more"></a>
@@ -119,21 +125,26 @@
 <p><img src="/images/pasted-131.png" alt="upload successful">  </p>
 <h2 id="其他说明-5"><a href="#其他说明-5" class="headerlink" title="其他说明"></a>其他说明</h2>
   </div>
+  <div class="post-meta">
+    <span class="post-time" style="color:#646060;font-size:13px">2020-01-26</span>
+  </div>
+
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
+
+<!-- 评论插件 -->
+
 <footer>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  &copy; 2020
+  2020
   <span class="author">
     x51
   </span>
-  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
-
 </footer>
+
 
     </div>
   </body>

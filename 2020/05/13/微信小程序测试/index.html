@@ -7,14 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>微信小程序测试 - x51的博客</title>
+  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=x51>
+  <meta name="keywords" content=>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
-  
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -22,6 +21,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
+
   <body>
     <div class="container">
       <header class="header">
@@ -37,6 +37,10 @@
         </li>
       
         <li class="menu-item">
+          <a href="/summary" class="menu-item-link">板绘</a>
+        </li>
+      
+        <li class="menu-item">
           <a href="/about" class="menu-item-link">关于</a>
         </li>
       
@@ -44,34 +48,41 @@
   </nav>
 </header>
 
+
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">微信小程序测试</h1>
   </div>
-   <div class="post-meta">
-    <span class="post-time">2020-05-13</span>
-  </div>
+
+  <!-- 文章目录 -->
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#小程序抓包"><span class="toc-text">小程序抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小程序源码"><span class="toc-text">小程序源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#待补充"><span class="toc-text">待补充</span></a></li></ol>
+
   <div class="post-content">
     <h3 id="小程序抓包"><a href="#小程序抓包" class="headerlink" title="小程序抓包"></a>小程序抓包</h3><p>低版本Android系统抓包方式和正常的浏览器抓包相同，导入burp证书即可。但在Android7.0+版本即使导入证书也抓不到https包，由于系统证书信任机制原因导致，解决方法：<br>1、使用低版本系统；<br>2、夜神模拟器+Proxifier；<br>Btw：更换burp版本后重新导入一下对应版本的证书文件。  </p>
 <a id="more"></a>
 <h3 id="小程序源码"><a href="#小程序源码" class="headerlink" title="小程序源码"></a>小程序源码</h3><p>每个小程序对应在微信文件目录下存在wxapkg后缀的源码包文件：<br><code>/data/data/com.tencent.mm/MicroMsg/aaa/appbrand/pkg/bbb.wxapkg</code><br><code>aaa</code>是一串hash字符(ID)，<code>bbb</code>对应的每一个小程序，在打开小程序前ls一下，打开后ls一下即可判断对应的包，pull出来。<br>反编译工具：wuWxapkg.js（github）  </p>
 <h3 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h3>
   </div>
+  <div class="post-meta">
+    <span class="post-time" style="color:#646060;font-size:13px">2020-05-13</span>
+  </div>
+
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
+
+<!-- 评论插件 -->
+
 <footer>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  &copy; 2020
+  2020
   <span class="author">
     x51
   </span>
-  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
-
 </footer>
+
 
     </div>
   </body>
