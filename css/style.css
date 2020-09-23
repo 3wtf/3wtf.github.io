@@ -131,6 +131,7 @@ a {
 .header .subtitle {
   font-size: 14px;
   color: #808080;
+  font-style: oblique;
 }
 .header .menu {
   margin: 0;
