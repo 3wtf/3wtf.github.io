@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>Android7.0证书导入问题解决 - x51</title>
+  <link rel="icon" href="" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content=>
+  
+    <meta name="description" content="与其感叹路难行，不如马上出发。">
+  
+  
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">x51</a>
+    <div class="subtitle">与其感叹路难行，不如马上出发.</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/summary" class="menu-item-link">板绘</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/about" class="menu-item-link">关于</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">Android7.0证书导入问题解决</h1>
+  </div>
+
+  <!-- 文章目录 -->
+  
+
+  <div class="post-content">
+    <p>正常抓http的包：</p>
+<p><img src="/images/pasted-132.png" alt="upload successful"> </p>
+<p>导入burpsuite证书后抓https包：</p>
+<p><img src="/images/pasted-133.png" alt="upload successful"> </p>
+<p>来自官方更新的介绍，在SDK 24开始，不再信任用户导入的证书：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">In</span> Android Nougat, we’ve changed how Android handles trusted certificate authorities (CAs) <span class="keyword">to</span> provide safer defaults <span class="keyword">for</span> secure app traffic. Most apps <span class="keyword">and</span><span class="built_in"> users </span>should <span class="keyword">not</span> be affected by these changes <span class="keyword">or</span> need <span class="keyword">to</span> take any action. The changes include:</span><br><span class="line"></span><br><span class="line">Safe <span class="keyword">and</span> easy APIs <span class="keyword">to</span> trust custom CAs.</span><br><span class="line">Apps that target API Level 24 <span class="keyword">and</span> above <span class="literal">no</span> longer trust<span class="built_in"> user </span><span class="keyword">or</span> admin-added CAs <span class="keyword">for</span> secure connections, by default.</span><br><span class="line">All devices running Android Nougat offer the same standardized <span class="builtin-name">set</span> of<span class="built_in"> system </span>CAs—<span class="literal">no</span> device-specific customizations.</span><br></pre></td></tr></table></figure>
+<p>在信任凭据列表可以看到，直接导入的burpsuite证书是在用户目录下，Android 7.0不再信任，所以导致抓不到https<br><img src="/images/pasted-134.png" alt="upload successful"> </p>
+<p>访问https失败</p>
+<p><img src="/images/pasted-136.png" alt="upload successful">  </p>
+<p>解决方法：将burpsuite证书安装到系统（system）目录。</p>
+<p>首先按照默认方法安装burpsuite证书，查看安装路径：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HWVOG:/ # ls -la /data/misc/user/0/cacerts-added/</span><br><span class="line">total 12</span><br><span class="line">drwxr-xr-x 2<span class="built_in"> system system </span>   4096 2020-09-27 10:50 .</span><br><span class="line">drwxr-x--- 3<span class="built_in"> system </span>everybody 4096 2020-09-27 10:50 <span class="built_in">..</span></span><br><span class="line">-rw-r--r-- 1<span class="built_in"> system system </span>    973 2020-09-27 10:50 9a5ba575.0</span><br><span class="line">HWVOG:/ #</span><br></pre></td></tr></table></figure>
+<p>发现用户安装证书路径在<code>/data/misc/user/0/cacerts-added</code>，证书名称是一串hash，后缀0<br>系统证书路径：<code>/system/etc/security/cacerts/</code>，需要先以rw权限挂载，然后把证书复制过去： </p>
+<pre><code>mount -o remount,rw /system
+cp /data/misc/user/0/cacerts-added/fuck.0 /system/etc/security/cacerts/
+chmod 644 fuck.0
+reboot</code></pre><p>重启之后查看system目录下的证书，已成功安装。<br><img src="/images/pasted-135.png" alt="upload successful"></p>
+
+  </div>
+  <div class="post-meta">
+    <span class="post-time" style="color:#646060;font-size:13px">2020-09-27</span>
+  </div>
+
+  <div class="post-footer">
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+
+<!-- 评论插件 -->
+
+<footer>
+  2020
+  <span class="author">
+    x51
+  </span>
+</footer>
+
+
+    </div>
+  </body>
+</html>
