@@ -55,14 +55,18 @@
   </div>
 
   <!-- 文章目录 -->
-  <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#遇到的问题"><span class="toc-text">遇到的问题</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#目的"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li></ol>
 
   <div class="post-content">
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubick——大魔导师</span><br></pre></td></tr></table></figure>
-<p>趁国庆这两天在家可以写点代码，把这个轮子给造起来，上班估计又没时间了/(ㄒoㄒ)/~~<br>目前只添加了几个利用，其他的漏洞边用边加，预期效果是后续作为一个“模板”，拿到POC后直接添加到列表即可，放张效果图：</p>
+    <p>趁国庆这两天在家可以写点代码，把这个轮子给造起来，上班估计又没时间了/(ㄒoㄒ)/~~  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubick，大魔导师</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-139.png" alt="upload successful"> </p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><code>Rubick</code>仅作为一个展示界面，其作用是将拿到的POC简单处理后添加到自身的漏洞列表，实现POC快速转化为一线工具库的目的。  </p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>目前只添加了部分利用，放张效果图：</p>
 <p><img src="/images/pasted-137.png" alt="upload successful"> </p>
 <p><img src="/images/pasted-138.png" alt="upload successful">  </p>
-<h6 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h6><p>1、用<code>ReadAsByteArrayAsync</code>代替<code>ReadAsStringAsync</code>，让<code>http response</code>以byte[]形式返回后处理，可以解决编码不识别的问题；  </p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1、用<code>ReadAsByteArrayAsync</code>代替<code>ReadAsStringAsync</code>，让<code>http response</code>以byte[]形式返回后处理，可以解决编码不识别的问题；  </p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Byte[] result = await content.ReadAsByteArrayAsync();</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">System</span>.Text.<span class="keyword">Encoding</span>.UTF8.GetString(result);</span><br></pre></td></tr></table></figure>
 <p>2、处理https证书失效问题，在请求开始的位置添加：</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServicePointManager.ServerCertificateValidationCallback =<span class="function"> (<span class="params">sender</span>, <span class="params">certificate</span>, <span class="params">chain</span>, <span class="params">sslPolicyErrors</span>) =&gt;</span> <span class="literal">true</span>;</span><br><span class="line"> System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;</span><br></pre></td></tr></table></figure>
