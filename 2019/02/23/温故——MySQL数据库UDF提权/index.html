@@ -7,13 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>温故——MySQL数据库UDF提权 - x51</title>
-  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=>
+  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -21,7 +22,6 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
-
   <body>
     <div class="container">
       <header class="header">
@@ -37,7 +37,11 @@
         </li>
       
         <li class="menu-item">
-          <a href="/summary" class="menu-item-link">板绘</a>
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/tools" class="menu-item-link">Tools</a>
         </li>
       
         <li class="menu-item">
@@ -47,16 +51,13 @@
     </ul>
   </nav>
 </header>
-
-
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">温故——MySQL数据库UDF提权</h1>
   </div>
-
-  <!-- 文章目录 -->
-  <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#UDF"><span class="toc-text">UDF</span></a></li></ol>
-
+   <div class="post-meta">
+    <span class="post-time">2019-02-23</span>
+  </div>
   <div class="post-content">
     <p>update：2019-05-13</p>
 <p>遇到一个案例，在内网扫描到MySQL弱口令（root账户），连接数据库后将beacon以16进制的形式写入到指定目录（目录可通过sqlmap os-shell获得），可在本地MySQL执行：</p>
@@ -87,27 +88,18 @@
 <p><img src="/images/pasted-26.png" alt="upload successful"><br>测试完成之后删除函数，删除dll文件；</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">function</span> sys_exec;</span><br></pre></td></tr></table></figure>
   </div>
-  <div class="post-meta">
-    <span class="post-time" style="color:#646060;font-size:13px">2019-02-23</span>
-  </div>
-
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
-
-<!-- 评论插件 -->
-
 <footer>
-  2020
+  &copy; 2020
   <span class="author">
     x51
   </span>
 </footer>
-
-
     </div>
   </body>
 </html>

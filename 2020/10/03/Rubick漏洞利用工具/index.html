@@ -7,13 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>Rubick漏洞利用工具 - x51</title>
-  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=>
+  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -21,7 +22,6 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
-
   <body>
     <div class="container">
       <header class="header">
@@ -37,7 +37,11 @@
         </li>
       
         <li class="menu-item">
-          <a href="/summary" class="menu-item-link">板绘</a>
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/tools" class="menu-item-link">Tools</a>
         </li>
       
         <li class="menu-item">
@@ -47,22 +51,19 @@
     </ul>
   </nav>
 </header>
-
-
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">Rubick漏洞利用工具</h1>
   </div>
-
-  <!-- 文章目录 -->
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#目的"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li></ol>
-
+   <div class="post-meta">
+    <span class="post-time">2020-10-03</span>
+  </div>
   <div class="post-content">
     <p>趁国庆这两天在家可以写点代码，把这个轮子给造起来，上班估计又没时间了/(ㄒoㄒ)/~~  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubick，大魔导师</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/pasted-139.png" alt="upload successful"> </p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><code>Rubick</code>仅作为一个展示界面，其作用是将拿到的POC简单处理后添加到自身的漏洞列表，实现POC快速转化为一线工具库的目的。  </p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><code>Rubick</code>仅作为一个展示界面，期望效果是将类似“0交互”的POC简单处理后添加到攻击漏洞列表，实现将POC快速转化为一线工具库的目的。  </p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>目前只添加了部分利用，放张效果图：</p>
 <p><img src="/images/pasted-137.png" alt="upload successful"> </p>
 <p><img src="/images/pasted-138.png" alt="upload successful">  </p>
@@ -71,27 +72,18 @@
 <p>2、处理https证书失效问题，在请求开始的位置添加：</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServicePointManager.ServerCertificateValidationCallback =<span class="function"> (<span class="params">sender</span>, <span class="params">certificate</span>, <span class="params">chain</span>, <span class="params">sslPolicyErrors</span>) =&gt;</span> <span class="literal">true</span>;</span><br><span class="line"> System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;</span><br></pre></td></tr></table></figure>
   </div>
-  <div class="post-meta">
-    <span class="post-time" style="color:#646060;font-size:13px">2020-10-03</span>
-  </div>
-
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
-
-<!-- 评论插件 -->
-
 <footer>
-  2020
+  &copy; 2020
   <span class="author">
     x51
   </span>
 </footer>
-
-
     </div>
   </body>
 </html>

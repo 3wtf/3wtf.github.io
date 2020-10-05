@@ -7,13 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>温故——格式化字符串Leak Canary - x51</title>
-  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=>
+  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -21,7 +22,6 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
-
   <body>
     <div class="container">
       <header class="header">
@@ -37,7 +37,11 @@
         </li>
       
         <li class="menu-item">
-          <a href="/summary" class="menu-item-link">板绘</a>
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/tools" class="menu-item-link">Tools</a>
         </li>
       
         <li class="menu-item">
@@ -47,16 +51,13 @@
     </ul>
   </nav>
 </header>
-
-
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">温故——格式化字符串Leak Canary</h1>
   </div>
-
-  <!-- 文章目录 -->
-  <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#PWN入门笔记"><span class="toc-text">PWN入门笔记</span></a></li></ol>
-
+   <div class="post-meta">
+    <span class="post-time">2019-02-26</span>
+  </div>
   <div class="post-content">
     <h6 id="PWN入门笔记"><a href="#PWN入门笔记" class="headerlink" title="PWN入门笔记"></a>PWN入门笔记</h6><p>main函数开启canary时栈分布： </p>
 <p>当堆栈向下(低地址)增长时，以FP地址（EBP）为基准，函数参数的偏移量是正值，而局部变量的偏移量是负值</p>
@@ -73,27 +74,18 @@
 <p>读取：</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#./binary_200  </span></span><br><span class="line">%15$x</span><br><span class="line">f1339a0<span class="number">0</span></span><br></pre></td></tr></table></figure>
   </div>
-  <div class="post-meta">
-    <span class="post-time" style="color:#646060;font-size:13px">2019-02-26</span>
-  </div>
-
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
-
-<!-- 评论插件 -->
-
 <footer>
-  2020
+  &copy; 2020
   <span class="author">
     x51
   </span>
 </footer>
-
-
     </div>
   </body>
 </html>

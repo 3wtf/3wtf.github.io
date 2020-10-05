@@ -7,13 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>渗透测试中如何处理前端加密？ - x51</title>
-  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=>
+  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -21,7 +22,6 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
-
   <body>
     <div class="container">
       <header class="header">
@@ -37,7 +37,11 @@
         </li>
       
         <li class="menu-item">
-          <a href="/summary" class="menu-item-link">板绘</a>
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/tools" class="menu-item-link">Tools</a>
         </li>
       
         <li class="menu-item">
@@ -47,16 +51,13 @@
     </ul>
   </nav>
 </header>
-
-
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">渗透测试中如何处理前端加密？</h1>
   </div>
-
-  <!-- 文章目录 -->
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、execjs"><span class="toc-text">1、execjs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、Selenium"><span class="toc-text">2、Selenium</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、js2py"><span class="toc-text">3、js2py</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、jsEncrypter"><span class="toc-text">4、jsEncrypter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-
+   <div class="post-meta">
+    <span class="post-time">2019-02-14</span>
+  </div>
   <div class="post-content">
     <p>在渗透测试过程中难免会遇到很多参数前端加密处理的情况，对我们接下来Fuzz、爆破/注入等操作引入很多麻烦，结合之前遇到的几种场景，整理总结了以下解决方法，常见场景如：<br>1、遇到一个SQL注入，但是注入参数被魔改base64了，我们需要写tamper处理payload，如何高效处理？<br>2、请求带一个防重放攻击的校验hash，该hash是开发者自定义加密算法生成的，如何分析并达到批量目的？<br>3、…</p>
 <a id="more"></a>
@@ -98,27 +99,18 @@ function jsEncrypt(burp_payload){
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Burp suite插件能解决的问题首选jsencrypter，如果需要写脚本处理，比如sqlmap的tamper，选js2py！</p>
 
   </div>
-  <div class="post-meta">
-    <span class="post-time" style="color:#646060;font-size:13px">2019-02-14</span>
-  </div>
-
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
-
-<!-- 评论插件 -->
-
 <footer>
-  2020
+  &copy; 2020
   <span class="author">
     x51
   </span>
 </footer>
-
-
     </div>
   </body>
 </html>

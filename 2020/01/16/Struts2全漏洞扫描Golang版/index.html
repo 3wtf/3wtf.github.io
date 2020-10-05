@@ -7,13 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
   <title>Struts2全漏洞扫描Golang版 - x51</title>
-  <link rel="icon" href="" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
-  <meta name="keywords" content=>
+  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
   
     <meta name="description" content="与其感叹路难行，不如马上出发。">
   
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
   
   
 
@@ -21,7 +22,6 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
-
   <body>
     <div class="container">
       <header class="header">
@@ -37,7 +37,11 @@
         </li>
       
         <li class="menu-item">
-          <a href="/summary" class="menu-item-link">板绘</a>
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/tools" class="menu-item-link">Tools</a>
         </li>
       
         <li class="menu-item">
@@ -47,16 +51,13 @@
     </ul>
   </nav>
 </header>
-
-
 <article class="post">
   <div class="post-title">
     <h1 class="article-title">Struts2全漏洞扫描Golang版</h1>
   </div>
-
-  <!-- 文章目录 -->
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STS2G"><span class="toc-text">STS2G</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#开发目的"><span class="toc-text">开发目的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#默认扫描模式"><span class="toc-text">默认扫描模式:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#指定漏洞扫描模式："><span class="toc-text">指定漏洞扫描模式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#命令执行模式："><span class="toc-text">命令执行模式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自定义参数："><span class="toc-text">自定义参数：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol></li></ol></li></ol></li></ol>
-
+   <div class="post-meta">
+    <span class="post-time">2020-01-16</span>
+  </div>
   <div class="post-content">
     <h1 id="STS2G"><a href="#STS2G" class="headerlink" title="STS2G"></a>STS2G</h1><p>项目地址：<strong><a href="https://github.com/x51/STS2G">https://github.com/x51/STS2G</a></strong><br>Struts2漏洞测试-Golang版，部分POC参考了众多优秀项目如<a href="https://github.com/HatBoy/Struts2-Scan">Struts2-Scan</a>，漏洞测试环境采用<a href="https://github.com/vulhub/vulhub/tree/master/struts2">vulhub</a>.  </p>
 <a id="more"></a>
@@ -71,27 +72,18 @@
 <h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>1、强烈建议使用vn参数；<br>2、自定义POC只需在utils中修改为自己的即可；<br>3、部分漏洞支持获取webpath，功能函数已经在各自漏洞模块中实现（func GetWebPath），可自行调用；</p>
 
   </div>
-  <div class="post-meta">
-    <span class="post-time" style="color:#646060;font-size:13px">2020-01-16</span>
-  </div>
-
   <div class="post-footer">
     
 
     <a href="#top" class="top">返回顶部</a>
   </div>
 </article>
-
-<!-- 评论插件 -->
-
 <footer>
-  2020
+  &copy; 2020
   <span class="author">
     x51
   </span>
 </footer>
-
-
     </div>
   </body>
 </html>

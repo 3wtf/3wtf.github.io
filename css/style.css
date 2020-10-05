@@ -5,8 +5,8 @@ html,
 body,
 .container {
   height: 100%;
-  font-family: Monaco, monospace, Hiragino Sans GB, Microsoft YaHei, WenQuanYi, Airal, sans-serif;
-  letter-spacing: 0.01rem;
+  font-family: Hiragino Sans GB, Microsoft YaHei, WenQuanYi, Airal, sans-serif;
+  color: #444;
 }
 .container {
   max-width: 840px;
@@ -61,7 +61,7 @@ a {
 /* Tomorrow Comment */
 .highlight .comment,
 .highlight .quote {
-  color: #408090;
+  color: #8e908c;
 }
 /* Tomorrow Red */
 .highlight .variable,
@@ -110,7 +110,7 @@ a {
   display: block;
   overflow-x: auto;
   background: #fff;
-  color: #000;
+  color: #4d4d4c;
   padding: 0.5em;
 }
 .highlight .emphasis {
@@ -120,7 +120,7 @@ a {
   font-weight: bold;
 }
 .header {
-  margin-bottom: -0.6em;
+  margin-bottom: 2em;
   padding: 0 20px;
 }
 .header .blog-title {
@@ -131,7 +131,6 @@ a {
 .header .subtitle {
   font-size: 14px;
   color: #808080;
-  font-style: oblique;
 }
 .header .menu {
   margin: 0;
@@ -142,7 +141,7 @@ a {
 .header .menu .menu-item {
   margin: 0 15px 0 0;
   padding: 3px 0 3px 0;
-  float: inherit;
+  float: left;
   display: inline-block;
 }
 .header .menu .menu-item-link {
@@ -174,7 +173,7 @@ a {
   text-align: justify;
 }
 .post .post-content a {
-  border-bottom: 1px solid;
+  border-bottom: 1px dotted;
 }
 .post .post-content a:hover {
   border-bottom: 1px solid;
@@ -185,7 +184,7 @@ a {
 }
 .post .post-content ul li,
 .post .post-content ol li {
-  padding: 0px;
+  padding: 5px;
   line-height: 1.5em;
 }
 .post figure {
@@ -208,29 +207,25 @@ a {
   border-left: 4px solid #ddd;
 }
 .post pre {
+  font-family: initial;
   margin: 0;
   padding: 0.5em 1.5em;
   overflow: auto;
-  font-size: 110%;
-  line-height: 1.5;
+  font-size: 85%;
+  line-height: 1.8;
   background-color: #f7f7f7;
+  border: 1px solid #ccc;
 }
 .post code {
-  font-family: Monaco, source code pro, Inconsolata, monospace, Hiragino Sans GB, Microsoft YaHei, WenQuanYi, Airal, sans-serif;
-  font-size: 1.02em;
-  background: #eee;
+  background: #f7f7f7;
+  border: 1px solid #d6d6d6;
+  font-family: inherit;
+  font-size: 90%;
   margin: 5px;
   padding: 0 5px;
 }
 .post p {
   line-height: 1.5em;
-}
-.post .toc {
-  padding: 1em;
-  list-style-type: square;
-}
-.post .toc-child {
-  list-style: square;
 }
 .post .post-footer {
   line-height: 1;
@@ -259,6 +254,11 @@ a {
 .post .post-footer .post-tag-list .post-tag-list-item:before {
   content: '#';
 }
+.article-title {
+  font-size: 1.5em;
+  line-height: 1.2em;
+  border-bottom: 1px solid #000;
+}
 .archive {
   padding: 0 20px;
   margin-bottom: 1em;
@@ -268,13 +268,11 @@ a {
   padding: 0;
 }
 .archive .post-archive .post-item {
-  margin: 10px 0;
+  margin: 6px 0;
   line-height: 1.5;
 }
 .archive .post-archive .post-item .post-date {
-  font-size: 80%;
-  color: #aaa;
-  font-family: Monaco, monospace, Hiragino Sans GB, Microsoft YaHei, WenQuanYi, Airal, sans-serif;
+  float: right;
 }
 @media screen and (max-width: 425px) {
   .archive .post-archive .post-item .post-date {
@@ -285,8 +283,7 @@ a {
   }
 }
 .archive .post-archive .post-item .post-title {
-/* border-bottom: 1px dotted; */
-  text-decoration: none;
+  border-bottom: 1px dotted;
 }
 .archive .post-archive .post-item .post-title:hover {
   border-bottom: 1px solid;
