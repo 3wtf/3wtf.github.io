@@ -6,7 +6,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   
-  <title>Rubick漏洞利用工具 - x51</title>
+  <title>一个简单的Exp集合工具 - x51</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   
   <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
@@ -53,18 +53,15 @@
 </header>
 <article class="post">
   <div class="post-title">
-    <h1 class="article-title">Rubick漏洞利用工具</h1>
+    <h1 class="article-title">一个简单的Exp集合工具</h1>
   </div>
    <div class="post-meta">
     <span class="post-time">2020-10-03</span>
   </div>
   <div class="post-content">
     <p>趁国庆这两天在家可以写点代码，把这个轮子给造起来，上班估计又没时间了/(ㄒoㄒ)/~~  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubick，大魔导师</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/pasted-139.png" alt="upload successful"> </p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><code>Rubick</code>仅作为一个展示界面，期望效果是将类似“0交互”的POC简单处理后添加到攻击漏洞列表，实现将POC快速转化为一线工具库的目的。  </p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>目前只添加了部分利用，放张效果图：</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>1、学习编程；<br>2、整理刚刚结束的xx行动中的漏洞；</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>目前只添加了部分漏洞利用，放张效果图：</p>
 <p><img src="/images/pasted-137.png" alt="upload successful"> </p>
 <p><img src="/images/pasted-138.png" alt="upload successful">  </p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1、用<code>ReadAsByteArrayAsync</code>代替<code>ReadAsStringAsync</code>，让<code>http response</code>以byte[]形式返回后处理，可以解决编码不识别的问题；  </p>
