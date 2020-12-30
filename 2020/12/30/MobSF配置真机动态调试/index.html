@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>MobSF配置真机动态调试 - x51</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
+  
+    <meta name="description" content="与其感叹路难行，不如马上出发。">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">x51</a>
+    <div class="subtitle">与其感叹路难行，不如马上出发.</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/tools" class="menu-item-link">Tools</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/about" class="menu-item-link">关于</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">MobSF配置真机动态调试</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2020-12-30</span>
+  </div>
+  <div class="post-content">
+    <p>官方建议使用模拟器动态调试，其实是支持真机调试的：<br><em>Dynamic analysis using real mobile device is possible, but not supported by us. If you need Dynamic Analysis, do not setup MobSF inside Docker or Virtual Machine</em><br>查看源码发现：  </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_n_mount</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">""</span><span class="string">"Test ADB Connection."</span><span class="string">""</span></span><br><span class="line">        <span class="keyword">self</span>.adb_command([<span class="string">'kill-server'</span>])</span><br><span class="line">        <span class="keyword">self</span>.adb_command([<span class="string">'start-server'</span>])</span><br><span class="line">        logger.info(<span class="string">'ADB Restarted'</span>)</span><br><span class="line">        <span class="keyword">self</span>.wait(<span class="number">2</span>)</span><br><span class="line">        logger.info(<span class="string">'Connecting to Android %s'</span>, <span class="keyword">self</span>.identifier)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">self</span>.run_subprocess_verify_output([get_adb(),</span><br><span class="line">                                                 <span class="string">'connect'</span>,</span><br><span class="line">                                                  <span class="keyword">self</span>.identifier])<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">        logger.info(<span class="string">'Restarting ADB Daemon as root'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">self</span>.run_subprocess_verify_output([get_adb(),</span><br><span class="line">                                                  <span class="string">'-s'</span>,</span><br><span class="line">                                                  <span class="keyword">self</span>.identifier,</span><br><span class="line">                                                  <span class="string">'root'</span>])<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">        logger.info(<span class="string">'Reconnecting to Android Device'</span>)</span><br><span class="line">        <span class="comment"># connect again with root adb</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">self</span>.run_subprocess_verify_output([get_adb(),</span><br><span class="line">                                                  <span class="string">'connect'</span>,</span><br><span class="line">                                                  <span class="keyword">self</span>.identifier])<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">        <span class="comment"># identify environment</span></span><br></pre></td></tr></table></figure>
+<p>默认连接adb的方式是<code>adb connect ip:port</code>，但如果是usb连接真机，self.identifier的值是一个hash串：  </p>
+<pre><code>List of devices attached
+02baf54bd0210612    device</code></pre><p>所以无论如何配置ANALYZER_IDENTIFIER，不修改这儿的代码是连接不到usb的adb上去的。<br>修改方法：<br>1、在命令行手动确认已经连接上了usb设备；<br>2、注释掉environment.py里的<strong>两次</strong>self.run_subprocess_verify_output；<br>3、重新启动mobsf，可正常使用动态调试，且usb方式要比网络方式更快；</p>
+
+  </div>
+  <div class="post-footer">
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2020
+  <span class="author">
+    x51
+  </span>
+</footer>
+    </div>
+  </body>
+</html>
