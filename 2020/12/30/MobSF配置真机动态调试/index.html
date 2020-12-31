@@ -1,64 +1,155 @@
 <!DOCTYPE html>
-<html>
-  <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang=zh>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  
-  <title>MobSF配置真机动态调试 - x51</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  
-  <meta name="keywords" content=渗透测试,内网渗透,红蓝对抗>
-  
-    <meta name="description" content="与其感叹路难行，不如马上出发。">
-  
-  
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
-  
-  
-
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="官方建议使用模拟器动态调试，其实是支持真机调试的：Dynamic analysis using real mobile device is possible, but not supported by us. If you need Dynamic Analysis, do not setup MobSF inside Docker or Virtual Machine查看源码发现：   1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MobSF配置真机动态调试">
+<meta property="og:url" content="https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/index.html">
+<meta property="og:site_name" content="x51">
+<meta property="og:description" content="官方建议使用模拟器动态调试，其实是支持真机调试的：Dynamic analysis using real mobile device is possible, but not supported by us. If you need Dynamic Analysis, do not setup MobSF inside Docker or Virtual Machine查看源码发现：   1234">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-30T06:50:37.000Z">
+<meta property="article:modified_time" content="2020-12-30T07:06:42.072Z">
+<meta property="article:author" content="x51">
+<meta property="article:tag" content="x51">
+<meta property="article:tag" content="渗透">
+<meta property="article:tag" content="攻防">
+<meta property="article:tag" content="红蓝对抗">
+<meta property="article:tag" content="redteam">
+<meta property="article:tag" content="x51&#39;blog">
+<meta property="article:tag" content="渗透测试">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>MobSF配置真机动态调试</title>
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
 <meta name="generator" content="Hexo 4.2.1"></head>
-  <body>
-    <div class="container">
-      <header class="header">
-  <div class="blog-title">
-    <a href="/" class="logo">x51</a>
-    <div class="subtitle">与其感叹路难行，不如马上出发.</div>
-  </div>
-  <nav class="navbar">
-    <ul class="menu">
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/10/31/Weblogic%E6%9C%AA%E6%8E%88%E6%9D%83RCE%E5%88%A9%E7%94%A8%EF%BC%88CVE-2020-14882%EF%BC%89/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&text=MobSF配置真机动态调试"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&is_video=false&description=MobSF配置真机动态调试"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MobSF配置真机动态调试&body=Check out this article: https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&name=MobSF配置真机动态调试&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&t=MobSF配置真机动态调试"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
       
-        <li class="menu-item">
-          <a href="/" class="menu-item-link">主页</a>
-        </li>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        MobSF配置真机动态调试
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">x51</span>
+      </span>
       
-        <li class="menu-item">
-          <a href="/archives" class="menu-item-link">归档</a>
-        </li>
+    <div class="postdate">
       
-        <li class="menu-item">
-          <a href="/tools" class="menu-item-link">Tools</a>
-        </li>
+        <time datetime="2020-12-30T06:50:37.000Z" itemprop="datePublished">2020-12-30</time>
+        
       
-        <li class="menu-item">
-          <a href="/about" class="menu-item-link">关于</a>
-        </li>
+    </div>
+
+
       
-    </ul>
-  </nav>
-</header>
-<article class="post">
-  <div class="post-title">
-    <h1 class="article-title">MobSF配置真机动态调试</h1>
-  </div>
-   <div class="post-meta">
-    <span class="post-time">2020-12-30</span>
-  </div>
-  <div class="post-content">
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
     <p>官方建议使用模拟器动态调试，其实是支持真机调试的：<br><em>Dynamic analysis using real mobile device is possible, but not supported by us. If you need Dynamic Analysis, do not setup MobSF inside Docker or Virtual Machine</em><br>查看源码发现：  </p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_n_mount</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">""</span><span class="string">"Test ADB Connection."</span><span class="string">""</span></span><br><span class="line">        <span class="keyword">self</span>.adb_command([<span class="string">'kill-server'</span>])</span><br><span class="line">        <span class="keyword">self</span>.adb_command([<span class="string">'start-server'</span>])</span><br><span class="line">        logger.info(<span class="string">'ADB Restarted'</span>)</span><br><span class="line">        <span class="keyword">self</span>.wait(<span class="number">2</span>)</span><br><span class="line">        logger.info(<span class="string">'Connecting to Android %s'</span>, <span class="keyword">self</span>.identifier)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">self</span>.run_subprocess_verify_output([get_adb(),</span><br><span class="line">                                                 <span class="string">'connect'</span>,</span><br><span class="line">                                                  <span class="keyword">self</span>.identifier])<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">        logger.info(<span class="string">'Restarting ADB Daemon as root'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">self</span>.run_subprocess_verify_output([get_adb(),</span><br><span class="line">                                                  <span class="string">'-s'</span>,</span><br><span class="line">                                                  <span class="keyword">self</span>.identifier,</span><br><span class="line">                                                  <span class="string">'root'</span>])<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">        logger.info(<span class="string">'Reconnecting to Android Device'</span>)</span><br><span class="line">        <span class="comment"># connect again with root adb</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">self</span>.run_subprocess_verify_output([get_adb(),</span><br><span class="line">                                                  <span class="string">'connect'</span>,</span><br><span class="line">                                                  <span class="keyword">self</span>.identifier])<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">        <span class="comment"># identify environment</span></span><br></pre></td></tr></table></figure>
 <p>默认连接adb的方式是<code>adb connect ip:port</code>，但如果是usb连接真机，self.identifier的值是一个hash串：  </p>
@@ -66,18 +157,137 @@
 02baf54bd0210612    device</code></pre><p>所以无论如何配置ANALYZER_IDENTIFIER，不修改这儿的代码是连接不到usb的adb上去的。<br>修改方法：<br>1、在命令行手动确认已经连接上了usb设备；<br>2、注释掉environment.py里的<strong>两次</strong>self.run_subprocess_verify_output；<br>3、重新启动mobsf，可正常使用动态调试，且usb方式要比网络方式更快；</p>
 
   </div>
-  <div class="post-footer">
-    
-
-    <a href="#top" class="top">返回顶部</a>
-  </div>
 </article>
-<footer>
-  &copy; 2020
-  <span class="author">
-    x51
-  </span>
-</footer>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
     </div>
-  </body>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&text=MobSF配置真机动态调试"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&is_video=false&description=MobSF配置真机动态调试"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MobSF配置真机动态调试&body=Check out this article: https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&title=MobSF配置真机动态调试"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&name=MobSF配置真机动态调试&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2020/12/30/MobSF%E9%85%8D%E7%BD%AE%E7%9C%9F%E6%9C%BA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/&t=MobSF配置真机动态调试"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2021
+    x51
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
 </html>
