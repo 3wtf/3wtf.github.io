@@ -9,26 +9,18 @@
     <meta name="description" content="趁国庆这两天在家可以写点代码，把这个轮子给造起来，上班估计又没时间了&#x2F;(ㄒoㄒ)&#x2F;~~   更新V2.0版更新日志：    重写UI； 新增自定义发包功能；   新增文件操作； 添加CVE-2020-14882利用；       目的1、学习编程；2、整理刚刚结束xx行动中的漏洞；   实现目前只添加了部分漏洞利用，放张效果图：      问题1、用ReadAsByteArrayAsync代替Re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rubick漏洞利用工具">
-<meta property="og:url" content="https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/index.html">
-<meta property="og:site_name" content="x51">
+<meta property="og:url" content="https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="xwuyi&#39;s blog">
 <meta property="og:description" content="趁国庆这两天在家可以写点代码，把这个轮子给造起来，上班估计又没时间了&#x2F;(ㄒoㄒ)&#x2F;~~   更新V2.0版更新日志：    重写UI； 新增自定义发包功能；   新增文件操作； 添加CVE-2020-14882利用；       目的1、学习编程；2、整理刚刚结束xx行动中的漏洞；   实现目前只添加了部分漏洞利用，放张效果图：      问题1、用ReadAsByteArrayAsync代替Re">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://x51.online/images/pasted-151.png">
-<meta property="og:image" content="https://x51.online/images/pasted-137.png">
-<meta property="og:image" content="https://x51.online/images/pasted-138.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-151.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-137.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-138.png">
 <meta property="article:published_time" content="2020-10-03T10:35:44.000Z">
 <meta property="article:modified_time" content="2020-11-11T11:17:45.806Z">
-<meta property="article:author" content="x51">
-<meta property="article:tag" content="x51">
-<meta property="article:tag" content="渗透">
-<meta property="article:tag" content="攻防">
-<meta property="article:tag" content="红蓝对抗">
-<meta property="article:tag" content="redteam">
-<meta property="article:tag" content="x51&#39;blog">
-<meta property="article:tag" content="渗透测试">
-<meta property="article:tag" content="网络安全">
+<meta property="article:author" content="xwuyi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://x51.online/images/pasted-151.png">
+<meta name="twitter:image" content="https://xwuyi.com/images/pasted-151.png">
     
     
       
@@ -62,7 +54,7 @@
     <!-- rss -->
     
     
-      <link rel="alternate" href="/true" title="x51" type="application/atom+xml" />
+      <link rel="alternate" href="/true" title="xwuyi&#39;s blog" type="application/atom+xml" />
     
 <meta name="generator" content="Hexo 4.2.1"></head>
 
@@ -104,17 +96,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&text=Rubick漏洞利用工具"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&is_video=false&description=Rubick漏洞利用工具"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Rubick漏洞利用工具&body=Check out this article: https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&name=Rubick漏洞利用工具&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&t=Rubick漏洞利用工具"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&text=Rubick漏洞利用工具"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&is_video=false&description=Rubick漏洞利用工具"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Rubick漏洞利用工具&body=Check out this article: https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&name=Rubick漏洞利用工具&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&t=Rubick漏洞利用工具"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -202,17 +194,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&text=Rubick漏洞利用工具"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&is_video=false&description=Rubick漏洞利用工具"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Rubick漏洞利用工具&body=Check out this article: https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&name=Rubick漏洞利用工具&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&t=Rubick漏洞利用工具"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&text=Rubick漏洞利用工具"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&is_video=false&description=Rubick漏洞利用工具"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Rubick漏洞利用工具&body=Check out this article: https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&title=Rubick漏洞利用工具"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&name=Rubick漏洞利用工具&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2020/10/03/Rubick%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/&t=Rubick漏洞利用工具"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -234,7 +226,7 @@
     
     
     2019-2021
-    x51
+    xwuyi
   </div>
   <div class="footer-right">
     <nav>

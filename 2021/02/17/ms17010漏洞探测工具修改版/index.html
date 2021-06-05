@@ -9,24 +9,16 @@
     <meta name="description" content="在内网常常需要扫描出存在ms17010漏洞的主机，网上现有的工具不太满足自己需求，在github上找到一个项目：https:&#x2F;&#x2F;github.com&#x2F;jflyup&#x2F;goMS17-010， 于是基于此代码修改了一下，效果：      修改的内容：1、去掉了445连接失败的信息，因为大部分情况下我只关注端口开放和存在漏洞的主机2、格式化osinfo，原始输出有点问题，需要一个小改动：   &#x2F;&#x2F; two">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ms17010漏洞探测工具">
-<meta property="og:url" content="https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/index.html">
-<meta property="og:site_name" content="x51">
+<meta property="og:url" content="https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/index.html">
+<meta property="og:site_name" content="xwuyi&#39;s blog">
 <meta property="og:description" content="在内网常常需要扫描出存在ms17010漏洞的主机，网上现有的工具不太满足自己需求，在github上找到一个项目：https:&#x2F;&#x2F;github.com&#x2F;jflyup&#x2F;goMS17-010， 于是基于此代码修改了一下，效果：      修改的内容：1、去掉了445连接失败的信息，因为大部分情况下我只关注端口开放和存在漏洞的主机2、格式化osinfo，原始输出有点问题，需要一个小改动：   &#x2F;&#x2F; two">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://x51.online/images/pasted-152.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-152.png">
 <meta property="article:published_time" content="2021-02-17T15:57:24.000Z">
 <meta property="article:modified_time" content="2021-02-17T16:18:50.602Z">
-<meta property="article:author" content="x51">
-<meta property="article:tag" content="x51">
-<meta property="article:tag" content="渗透">
-<meta property="article:tag" content="攻防">
-<meta property="article:tag" content="红蓝对抗">
-<meta property="article:tag" content="redteam">
-<meta property="article:tag" content="x51&#39;blog">
-<meta property="article:tag" content="渗透测试">
-<meta property="article:tag" content="网络安全">
+<meta property="article:author" content="xwuyi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://x51.online/images/pasted-152.png">
+<meta name="twitter:image" content="https://xwuyi.com/images/pasted-152.png">
     
     
       
@@ -60,7 +52,7 @@
     <!-- rss -->
     
     
-      <link rel="alternate" href="/true" title="x51" type="application/atom+xml" />
+      <link rel="alternate" href="/true" title="xwuyi&#39;s blog" type="application/atom+xml" />
     
 <meta name="generator" content="Hexo 4.2.1"></head>
 
@@ -100,17 +92,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&text=Ms17010漏洞探测工具"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&is_video=false&description=Ms17010漏洞探测工具"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Ms17010漏洞探测工具&body=Check out this article: https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&name=Ms17010漏洞探测工具&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&t=Ms17010漏洞探测工具"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&text=Ms17010漏洞探测工具"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&is_video=false&description=Ms17010漏洞探测工具"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ms17010漏洞探测工具&body=Check out this article: https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&name=Ms17010漏洞探测工具&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&t=Ms17010漏洞探测工具"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -197,17 +189,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&text=Ms17010漏洞探测工具"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&is_video=false&description=Ms17010漏洞探测工具"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Ms17010漏洞探测工具&body=Check out this article: https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&name=Ms17010漏洞探测工具&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&t=Ms17010漏洞探测工具"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&text=Ms17010漏洞探测工具"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&is_video=false&description=Ms17010漏洞探测工具"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ms17010漏洞探测工具&body=Check out this article: https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&title=Ms17010漏洞探测工具"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&name=Ms17010漏洞探测工具&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/&t=Ms17010漏洞探测工具"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -229,7 +221,7 @@
     
     
     2019-2021
-    x51
+    xwuyi
   </div>
   <div class="footer-right">
     <nav>

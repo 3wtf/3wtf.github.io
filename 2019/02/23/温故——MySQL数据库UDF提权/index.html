@@ -9,34 +9,26 @@
     <meta name="description" content="update：2019-05-13 遇到一个案例，在内网扫描到MySQL弱口令（root账户），连接数据库后将beacon以16进制的形式写入到指定目录（目录可通过sqlmap os-shell获得），可在本地MySQL执行：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="温故——MySQL数据库UDF提权">
-<meta property="og:url" content="https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/index.html">
-<meta property="og:site_name" content="x51">
+<meta property="og:url" content="https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/index.html">
+<meta property="og:site_name" content="xwuyi&#39;s blog">
 <meta property="og:description" content="update：2019-05-13 遇到一个案例，在内网扫描到MySQL弱口令（root账户），连接数据库后将beacon以16进制的形式写入到指定目录（目录可通过sqlmap os-shell获得），可在本地MySQL执行：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://x51.online/images/pasted-15.png">
-<meta property="og:image" content="https://x51.online/images/pasted-16.png">
-<meta property="og:image" content="https://x51.online/images/pasted-19.png">
-<meta property="og:image" content="https://x51.online/images/pasted-18.png">
-<meta property="og:image" content="https://x51.online/images/pasted-20.png">
-<meta property="og:image" content="https://x51.online/images/pasted-21.png">
-<meta property="og:image" content="https://x51.online/images/pasted-22.png">
-<meta property="og:image" content="https://x51.online/images/pasted-23.png">
-<meta property="og:image" content="https://x51.online/images/pasted-24.png">
-<meta property="og:image" content="https://x51.online/images/pasted-25.png">
-<meta property="og:image" content="https://x51.online/images/pasted-26.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-15.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-16.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-19.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-18.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-20.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-21.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-22.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-23.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-24.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-25.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-26.png">
 <meta property="article:published_time" content="2019-02-23T01:03:53.000Z">
 <meta property="article:modified_time" content="2020-06-28T03:09:16.363Z">
-<meta property="article:author" content="x51">
-<meta property="article:tag" content="x51">
-<meta property="article:tag" content="渗透">
-<meta property="article:tag" content="攻防">
-<meta property="article:tag" content="红蓝对抗">
-<meta property="article:tag" content="redteam">
-<meta property="article:tag" content="x51&#39;blog">
-<meta property="article:tag" content="渗透测试">
-<meta property="article:tag" content="网络安全">
+<meta property="article:author" content="xwuyi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://x51.online/images/pasted-15.png">
+<meta name="twitter:image" content="https://xwuyi.com/images/pasted-15.png">
     
     
       
@@ -70,7 +62,7 @@
     <!-- rss -->
     
     
-      <link rel="alternate" href="/true" title="x51" type="application/atom+xml" />
+      <link rel="alternate" href="/true" title="xwuyi&#39;s blog" type="application/atom+xml" />
     
 <meta name="generator" content="Hexo 4.2.1"></head>
 
@@ -112,18 +104,18 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&text=温故——MySQL数据库UDF提权"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&is_video=false&description=温故——MySQL数据库UDF提权"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=温故——MySQL数据库UDF提权&body=Check out this article: https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&name=温故——MySQL数据库UDF提权&description=&lt;p&gt;update：2019-05-13&lt;/p&gt;
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&text=温故——MySQL数据库UDF提权"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&is_video=false&description=温故——MySQL数据库UDF提权"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=温故——MySQL数据库UDF提权&body=Check out this article: https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&name=温故——MySQL数据库UDF提权&description=&lt;p&gt;update：2019-05-13&lt;/p&gt;
 &lt;p&gt;遇到一个案例，在内网扫描到MySQL弱口令（root账户），连接数据库后将beacon以16进制的形式写入到指定目录（目录可通过sqlmap os-shell获得），可在本地MySQL执行：&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&t=温故——MySQL数据库UDF提权"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&t=温故——MySQL数据库UDF提权"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -222,18 +214,18 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&text=温故——MySQL数据库UDF提权"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&is_video=false&description=温故——MySQL数据库UDF提权"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=温故——MySQL数据库UDF提权&body=Check out this article: https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&name=温故——MySQL数据库UDF提权&description=&lt;p&gt;update：2019-05-13&lt;/p&gt;
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&text=温故——MySQL数据库UDF提权"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&is_video=false&description=温故——MySQL数据库UDF提权"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=温故——MySQL数据库UDF提权&body=Check out this article: https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&title=温故——MySQL数据库UDF提权"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&name=温故——MySQL数据库UDF提权&description=&lt;p&gt;update：2019-05-13&lt;/p&gt;
 &lt;p&gt;遇到一个案例，在内网扫描到MySQL弱口令（root账户），连接数据库后将beacon以16进制的形式写入到指定目录（目录可通过sqlmap os-shell获得），可在本地MySQL执行：&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&t=温故——MySQL数据库UDF提权"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2019/02/23/%E6%B8%A9%E6%95%85%E2%80%94%E2%80%94MySQL%E6%95%B0%E6%8D%AE%E5%BA%93UDF%E6%8F%90%E6%9D%83/&t=温故——MySQL数据库UDF提权"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -255,7 +247,7 @@
     
     
     2019-2021
-    x51
+    xwuyi
   </div>
   <div class="footer-right">
     <nav>

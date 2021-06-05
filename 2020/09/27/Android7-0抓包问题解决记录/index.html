@@ -9,28 +9,20 @@
     <meta name="description" content="正常抓http的包：   导入burpsuite证书后抓https包：   来自官方更新的介绍，在SDK 24开始，不再信任用户导入的证书： 12345In Android Nougat, we’ve changed how Android handles trusted certificate authorities (CAs) to provide safer defaults for sec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android7.0证书导入问题解决">
-<meta property="og:url" content="https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/index.html">
-<meta property="og:site_name" content="x51">
+<meta property="og:url" content="https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="xwuyi&#39;s blog">
 <meta property="og:description" content="正常抓http的包：   导入burpsuite证书后抓https包：   来自官方更新的介绍，在SDK 24开始，不再信任用户导入的证书： 12345In Android Nougat, we’ve changed how Android handles trusted certificate authorities (CAs) to provide safer defaults for sec">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://x51.online/images/pasted-132.png">
-<meta property="og:image" content="https://x51.online/images/pasted-133.png">
-<meta property="og:image" content="https://x51.online/images/pasted-134.png">
-<meta property="og:image" content="https://x51.online/images/pasted-136.png">
-<meta property="og:image" content="https://x51.online/images/pasted-135.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-132.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-133.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-134.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-136.png">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-135.png">
 <meta property="article:published_time" content="2020-09-27T03:34:07.000Z">
 <meta property="article:modified_time" content="2020-09-27T07:51:46.883Z">
-<meta property="article:author" content="x51">
-<meta property="article:tag" content="x51">
-<meta property="article:tag" content="渗透">
-<meta property="article:tag" content="攻防">
-<meta property="article:tag" content="红蓝对抗">
-<meta property="article:tag" content="redteam">
-<meta property="article:tag" content="x51&#39;blog">
-<meta property="article:tag" content="渗透测试">
-<meta property="article:tag" content="网络安全">
+<meta property="article:author" content="xwuyi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://x51.online/images/pasted-132.png">
+<meta name="twitter:image" content="https://xwuyi.com/images/pasted-132.png">
     
     
       
@@ -64,7 +56,7 @@
     <!-- rss -->
     
     
-      <link rel="alternate" href="/true" title="x51" type="application/atom+xml" />
+      <link rel="alternate" href="/true" title="xwuyi&#39;s blog" type="application/atom+xml" />
     
 <meta name="generator" content="Hexo 4.2.1"></head>
 
@@ -106,17 +98,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&text=Android7.0证书导入问题解决"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&is_video=false&description=Android7.0证书导入问题解决"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Android7.0证书导入问题解决&body=Check out this article: https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&name=Android7.0证书导入问题解决&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&t=Android7.0证书导入问题解决"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&text=Android7.0证书导入问题解决"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&is_video=false&description=Android7.0证书导入问题解决"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android7.0证书导入问题解决&body=Check out this article: https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&name=Android7.0证书导入问题解决&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&t=Android7.0证书导入问题解决"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -205,17 +197,17 @@ reboot</code></pre><p>重启之后查看system目录下的证书，已成功安�
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&text=Android7.0证书导入问题解决"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&is_video=false&description=Android7.0证书导入问题解决"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Android7.0证书导入问题解决&body=Check out this article: https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&name=Android7.0证书导入问题解决&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://x51.online/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&t=Android7.0证书导入问题解决"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&text=Android7.0证书导入问题解决"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&is_video=false&description=Android7.0证书导入问题解决"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android7.0证书导入问题解决&body=Check out this article: https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&title=Android7.0证书导入问题解决"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&name=Android7.0证书导入问题解决&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2020/09/27/Android7-0%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/&t=Android7.0证书导入问题解决"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -237,7 +229,7 @@ reboot</code></pre><p>重启之后查看system目录下的证书，已成功安�
     
     
     2019-2021
-    x51
+    xwuyi
   </div>
   <div class="footer-right">
     <nav>
